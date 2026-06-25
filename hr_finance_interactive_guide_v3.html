@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HR Finance Reference Guide — Poprouser</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --pop-blue: #5490cd;
+  --pop-blue-light: #ddeaf8;
+  --pop-blue-mid: #a4c4e9;
+  --dark-1: #1e4974;
+  --dark-2: #14314e;
+  --pop-gold: #fdc362;
+  --pop-gold-light: #fff4dc;
+  --pop-berry: #f1543f;
+  --grey: #7f7f7f;
+  --dark-grey: #595959;
+  --skypop: #b4e1fa;
+  --skypop-light: #e8f6fd;
+  --white: #ffffff;
+  --page-bg: #f4f6f9;
+  --card-bg: #ffffff;
+  --border-light: rgba(84,144,205,0.18);
+  --border-mid: rgba(84,144,205,0.35);
+  --font-head: 'Montserrat', 'Century Gothic', 'Arial', sans-serif;
+  --font-body: 'Century Gothic', 'Avenir', 'Arial', sans-serif;
+  --font-mono: 'Courier New', monospace;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--page-bg);
+  color: var(--dark-grey);
+  min-height: 100vh;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ── Top header bar ─────────────────────────────────────────────── */
+.site-header {
+  background: var(--dark-2);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  border-bottom: 3px solid var(--pop-blue);
+}
+
+.logo-lockup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+/* SVG emblem */
+.logo-emblem { flex-shrink: 0; }
+
+.logo-wordmark {
+  font-family: var(--font-head);
+  font-size: 20px;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+.logo-wordmark .pop { font-weight: 400; color: var(--white); }
+.logo-wordmark .rouser { font-weight: 600; color: var(--pop-blue); }
+
+.header-tagline {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--pop-blue-mid);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── Hero band ──────────────────────────────────────────────────── */
+.hero {
+  background: var(--dark-1);
+  padding: 2rem 2rem 1.75rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.hero-inner { max-width: 960px; margin: 0 auto; }
+.hero h1 {
+  font-family: var(--font-head);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+.hero h1 strong { font-weight: 600; color: var(--pop-blue); }
+.hero h1 .gold-dot { color: var(--pop-gold); }
+.hero-sub {
+  font-size: 13px;
+  color: var(--pop-blue-mid);
+  max-width: 640px;
+  line-height: 1.6;
+}
+
+/* ── Main layout ────────────────────────────────────────────────── */
+.main { max-width: 960px; margin: 0 auto; padding: 1.5rem 2rem 3rem; }
+
+/* ── Tabs ───────────────────────────────────────────────────────── */
+.nav-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-light);
+}
+.tab-btn {
+  padding: 7px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-mid);
+  background: var(--white);
+  color: var(--dark-1);
+  font-size: 12px;
+  font-family: var(--font-head);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.02em;
+}
+.tab-btn:hover { background: var(--pop-blue-light); border-color: var(--pop-blue); }
+.tab-btn.active {
+  background: var(--pop-blue);
+  color: var(--white);
+  border-color: var(--pop-blue);
+}
+
+/* ── Sections ───────────────────────────────────────────────────── */
+.section { display: none; }
+.section.active { display: block; }
+
+/* ── Metric strip ───────────────────────────────────────────────── */
+.metric-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+.metric-card {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-top: 3px solid var(--pop-blue);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  text-align: center;
+}
+.metric-card .mlabel {
+  font-size: 11px;
+  font-family: var(--font-head);
+  font-weight: 500;
+  color: var(--grey);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+.metric-card .mvalue {
+  font-family: var(--font-head);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--dark-1);
+}
+
+/* ── Overview cards ─────────────────────────────────────────────── */
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+.overview-card {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-left: 4px solid var(--pop-blue);
+  border-radius: var(--radius-md);
+  padding: 1.1rem 1.25rem;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.overview-card:hover {
+  border-left-color: var(--pop-gold);
+  box-shadow: 0 2px 12px rgba(84,144,205,0.12);
+}
+.overview-card .domain-label {
+  font-family: var(--font-head);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--pop-blue);
+  margin-bottom: 4px;
+}
+.overview-card .domain-name {
+  font-family: var(--font-head);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark-2);
+  margin-bottom: 5px;
+}
+.overview-card .domain-desc {
+  font-size: 12px;
+  color: var(--grey);
+  line-height: 1.55;
+}
+
+/* ── Term grid ──────────────────────────────────────────────────── */
+.term-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+.term-card {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  border-left: 3px solid transparent;
+}
+.term-card:hover {
+  border-left-color: var(--pop-blue);
+  box-shadow: 0 2px 10px rgba(84,144,205,0.1);
+}
+.term-card.selected {
+  border-left-color: var(--pop-blue);
+  border-color: var(--pop-blue);
+  background: var(--pop-blue-light);
+}
+.term-name {
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dark-2);
+  margin-bottom: 4px;
+}
+.term-short {
+  font-size: 12px;
+  color: var(--grey);
+  line-height: 1.5;
+}
+
+/* ── Detail panel ───────────────────────────────────────────────── */
+.detail-panel {
+  background: var(--skypop-light);
+  border: 1px solid var(--border-mid);
+  border-left: 4px solid var(--pop-blue);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+.detail-panel h3 {
+  font-family: var(--font-head);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--dark-2);
+  margin-bottom: 8px;
+}
+.detail-body { font-size: 13px; color: var(--dark-grey); line-height: 1.7; }
+
+/* ── Formula box ────────────────────────────────────────────────── */
+.formula-box {
+  background: var(--dark-2);
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--skypop);
+  margin: 10px 0;
+  letter-spacing: 0.02em;
+}
+
+/* ── Use case tags ──────────────────────────────────────────────── */
+.use-case-tag {
+  display: inline-block;
+  background: var(--pop-blue-light);
+  color: var(--dark-1);
+  font-family: var(--font-head);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: var(--radius-sm);
+  margin: 3px 3px 3px 0;
+  border: 1px solid var(--border-mid);
+  letter-spacing: 0.02em;
+}
+
+/* ── Component breakdown ────────────────────────────────────────── */
+.components-section { margin-top: 16px; }
+.components-label {
+  font-family: var(--font-head);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--pop-blue);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.components-label::before {
+  content: '';
+  display: inline-block;
+  width: 14px;
+  height: 2px;
+  background: var(--pop-gold);
+  border-radius: 2px;
+}
+.component-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 8px;
+}
+.component-card {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  border-top: 2px solid var(--pop-blue);
+  padding: 10px 12px;
+}
+.component-name {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--dark-1);
+  margin-bottom: 5px;
+}
+.component-def {
+  font-size: 11px;
+  color: var(--dark-grey);
+  line-height: 1.55;
+  margin-bottom: 7px;
+}
+.component-obtain {
+  font-size: 11px;
+  color: var(--grey);
+  line-height: 1.5;
+  padding-top: 7px;
+  border-top: 1px solid var(--border-light);
+}
+.obtain-label {
+  font-family: var(--font-head);
+  font-weight: 600;
+  color: var(--dark-1);
+  background: var(--pop-gold-light);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 10px;
+  margin-right: 3px;
+}
+
+/* ── Calculators ────────────────────────────────────────────────── */
+.calc-section {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.calc-section-head {
+  background: var(--dark-1);
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.calc-section-head h3 {
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+}
+.calc-section-body { padding: 1.1rem 1.25rem; }
+.calc-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.calc-row label {
+  font-size: 12px;
+  color: var(--dark-grey);
+  min-width: 210px;
+}
+.calc-row input[type=number] {
+  width: 140px;
+  padding: 6px 10px;
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  color: var(--dark-2);
+  background: var(--pop-blue-light);
+  font-family: var(--font-body);
+}
+.calc-row input[type=number]:focus {
+  outline: none;
+  border-color: var(--pop-blue);
+  background: var(--white);
+}
+.calc-result {
+  background: var(--dark-1);
+  color: var(--white);
+  border-radius: var(--radius-sm);
+  padding: 9px 14px;
+  font-family: var(--font-head);
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+.calc-result span { color: var(--pop-gold); }
+
+/* ── Footer ─────────────────────────────────────────────────────── */
+.site-footer {
+  background: var(--dark-2);
+  border-top: 3px solid var(--pop-blue);
+  padding: 1.5rem 2rem;
+  margin-top: 3rem;
+}
+.footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-left { display: flex; align-items: center; gap: 12px; }
+.footer-brand {
+  font-family: var(--font-head);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--pop-blue-mid);
+}
+.footer-brand strong { color: var(--pop-gold); font-weight: 600; }
+.footer-divider {
+  width: 1px; height: 20px;
+  background: rgba(255,255,255,0.15);
+}
+.footer-meta {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+}
+.footer-right {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.45);
+}
+.footer-right strong { color: var(--pop-blue-mid); font-weight: 600; }
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .site-header { padding: 0 1rem; }
+  .hero { padding: 1.5rem 1rem; }
+  .main { padding: 1rem 1rem 3rem; }
+  .header-tagline { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Header ──────────────────────────────────────────────────── -->
+<header class="site-header">
+  <div class="logo-lockup">
+    <!-- Poprouser SVG emblem: circle + sprout + chart-leaf + wordmark -->
+    <svg class="logo-emblem" width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Poprouser logo emblem">
+      <circle cx="19" cy="19" r="18" stroke="#5490cd" stroke-width="2" fill="white" fill-opacity="0.08"/>
+      <path d="M19 28 L19 18" stroke="#5490cd" stroke-width="2" stroke-linecap="round"/>
+      <path d="M19 22 Q14 20 13 15 Q17 14 20 18" fill="#5490cd" fill-opacity="0.85"/>
+      <path d="M19 19 Q24 17 25 12 Q21 11 18 15" fill="#72a5d9" fill-opacity="0.75"/>
+      <polyline points="13,15 14.5,13 16,14.5 17.5,11.5 19,13 20.5,10" stroke="#fdc362" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <circle cx="19" cy="29.5" r="1.2" fill="#5490cd"/>
+    </svg>
+    <div class="logo-wordmark">
+      <span class="pop">pop</span><span class="rouser">rouser</span>
+    </div>
+  </div>
+  <div class="header-tagline">HR Finance Reference Guide</div>
+</header>
+
+<!-- ── Hero ────────────────────────────────────────────────────── -->
+<div class="hero">
+  <div class="hero-inner">
+    <h1>HR Finance <strong>Interactive Reference</strong><span class="gold-dot">.</span></h1>
+    <p class="hero-sub">Key terms, formulas + use cases across six people finance domains. Click any term to expand, including component-level breakdowns with plain-language definitions and data sources.</p>
+  </div>
+</div>
+
+<!-- ── Main ────────────────────────────────────────────────────── -->
+<main class="main">
+
+  <nav class="nav-tabs" aria-label="Domain navigation">
+    <button class="tab-btn active" data-tab="overview">Overview</button>
+    <button class="tab-btn" data-tab="workforce">Workforce Costs</button>
+    <button class="tab-btn" data-tab="turnover">Turnover + Retention</button>
+    <button class="tab-btn" data-tab="acquisition">Talent Acquisition</button>
+    <button class="tab-btn" data-tab="productivity">HR ROI + Productivity</button>
+    <button class="tab-btn" data-tab="planning">Headcount Planning</button>
+    <button class="tab-btn" data-tab="calculators">Formula Lab</button>
+  </nav>
+
+  <!-- Overview -->
+  <div id="overview" class="section active">
+    <div class="metric-strip">
+      <div class="metric-card"><div class="mlabel">Core domains</div><div class="mvalue">6</div></div>
+      <div class="metric-card"><div class="mlabel">Key terms</div><div class="mvalue">40+</div></div>
+      <div class="metric-card"><div class="mlabel">Live calculators</div><div class="mvalue">8</div></div>
+      <div class="metric-card"><div class="mlabel">Components explained</div><div class="mvalue">80+</div></div>
+    </div>
+    <div class="overview-grid">
+      <div class="overview-card" onclick="goTab('workforce')"><div class="domain-label">Domain 1</div><div class="domain-name">Workforce Costs</div><div class="domain-desc">Total labor spend, benefits burden, comp ratios + salary benchmarking.</div></div>
+      <div class="overview-card" onclick="goTab('turnover')"><div class="domain-label">Domain 2</div><div class="domain-name">Turnover + Retention</div><div class="domain-desc">Attrition rates, cost of turnover, retention ROI + flight risk signals.</div></div>
+      <div class="overview-card" onclick="goTab('acquisition')"><div class="domain-label">Domain 3</div><div class="domain-name">Talent Acquisition Finance</div><div class="domain-desc">Cost-per-hire, quality of hire, offer acceptance rates + sourcing ROI.</div></div>
+      <div class="overview-card" onclick="goTab('productivity')"><div class="domain-label">Domain 4</div><div class="domain-name">HR ROI + Productivity</div><div class="domain-desc">Revenue per employee, HR cost ratio, training ROI + program evaluation.</div></div>
+      <div class="overview-card" onclick="goTab('planning')"><div class="domain-label">Domain 5</div><div class="domain-name">Headcount Planning</div><div class="domain-desc">Open req tracking, span of control, workforce forecasting + budget variance.</div></div>
+      <div class="overview-card" onclick="goTab('calculators')"><div class="domain-label">Formula Lab</div><div class="domain-name">Interactive Calculators</div><div class="domain-desc">Plug in real numbers and get live outputs for the most-used HR Finance formulas.</div></div>
+    </div>
+  </div>
+
+  <!-- Domain sections -->
+  <div id="workforce" class="section">
+    <div id="workforce-detail" class="detail-panel"><div class="detail-body" style="color:var(--grey);">Select any term to expand its definition, formula components + use cases.</div></div>
+    <div class="term-grid" id="workforce-grid"></div>
+  </div>
+  <div id="turnover" class="section">
+    <div id="turnover-detail" class="detail-panel"><div class="detail-body" style="color:var(--grey);">Select any term to expand its definition, formula components + use cases.</div></div>
+    <div class="term-grid" id="turnover-grid"></div>
+  </div>
+  <div id="acquisition" class="section">
+    <div id="acquisition-detail" class="detail-panel"><div class="detail-body" style="color:var(--grey);">Select any term to expand its definition, formula components + use cases.</div></div>
+    <div class="term-grid" id="acquisition-grid"></div>
+  </div>
+  <div id="productivity" class="section">
+    <div id="productivity-detail" class="detail-panel"><div class="detail-body" style="color:var(--grey);">Select any term to expand its definition, formula components + use cases.</div></div>
+    <div class="term-grid" id="productivity-grid"></div>
+  </div>
+  <div id="planning" class="section">
+    <div id="planning-detail" class="detail-panel"><div class="detail-body" style="color:var(--grey);">Select any term to expand its definition, formula components + use cases.</div></div>
+    <div class="term-grid" id="planning-grid"></div>
+  </div>
+
+  <!-- Formula Lab -->
+  <div id="calculators" class="section">
+
+    <div class="calc-section">
+      <div class="calc-section-head"><h3>Turnover cost estimator</h3></div>
+      <div class="calc-section-body">
+        <div class="calc-row"><label>Annual salary of departing employee ($)</label><input type="number" id="c1-salary" value="75000" oninput="calcTurnover()"></div>
+        <div class="calc-row"><label>Turnover cost multiplier (%)</label><input type="number" id="c1-mult" value="150" oninput="calcTurnover()"></div>
+        <div id="c1-result" class="calc-result"></div>
+      </div>
+    </div>
+
+    <div class="calc-section">
+      <div class="calc-section-head"><h3>Cost-per-hire</h3></div>
+      <div class="calc-section-body">
+        <div class="calc-row"><label>Internal recruiting costs ($)</label><input type="number" id="c2-int" value="5000" oninput="calcCPH()"></div>
+        <div class="calc-row"><label>External recruiting costs ($)</label><input type="number" id="c2-ext" value="8000" oninput="calcCPH()"></div>
+        <div class="calc-row"><label>Total hires in period</label><input type="number" id="c2-hires" value="10" oninput="calcCPH()"></div>
+        <div id="c2-result" class="calc-result"></div>
+      </div>
+    </div>
+
+    <div class="calc-section">
+      <div class="calc-section-head"><h3>Benefits burden rate</h3></div>
+      <div class="calc-section-body">
+        <div class="calc-row"><label>Total annual base salary ($)</label><input type="number" id="c3-base" value="500000" oninput="calcBBR()"></div>
+        <div class="calc-row"><label>Total annual benefits cost ($)</label><input type="number" id="c3-ben" value="120000" oninput="calcBBR()"></div>
+        <div id="c3-result" class="calc-result"></div>
+      </div>
+    </div>
+
+    <div class="calc-section">
+      <div class="calc-section-head"><h3>Compa-ratio</h3></div>
+      <div class="calc-section-body">
+        <div class="calc-row"><label>Employee actual salary ($)</label><input type="number" id="c4-actual" value="72000" oninput="calcCompa()"></div>
+        <div class="calc-row"><label>Market midpoint / range mid ($)</label><input type="number" id="c4-mid" value="80000" oninput="calcCompa()"></div>
+        <div id="c4-result" class="calc-result"></div>
+      </div>
+    </div>
+
+    <div class="calc-section">
+      <div class="calc-section-head"><h3>Voluntary attrition rate</h3></div>
+      <div class="calc-section-body">
+        <div class="calc-row"><label>Voluntary separations in period</label><input type="number" id="c5-sep" value="12" oninput="calcAttrition()"></div>
+        <div class="calc-row"><label>Average headcount in period</label><input type="number" id="c5-hc" value="200" oninput="calcAttrition()"></div>
+        <div id="c5-result" class="calc-result"></div>
+      </div>
+    </div>
+
+    <div class="calc-section">
+      <div class="calc-section-head"><h3>Revenue per employee</h3></div>
+      <div class="calc-section-body">
+        <div class="calc-row"><label>Annual revenue ($)</label><input type="number" id="c6-rev" value="10000000" oninput="calcRPE()"></div>
+        <div class="calc-row"><label>FTE headcount</label><input type="number" id="c6-fte" value="100" oninput="calcRPE()"></div>
+        <div id="c6-result" class="calc-result"></div>
+      </div>
+    </div>
+
+    <div class="calc-section">
+      <div class="calc-section-head"><h3>HR cost ratio</h3></div>
+      <div class="calc-section-body">
+        <div class="calc-row"><label>Total HR department cost ($)</label><input type="number" id="c7-hr" value="600000" oninput="calcHRRatio()"></div>
+        <div class="calc-row"><label>Total operating expense ($)</label><input type="number" id="c7-opex" value="8000000" oninput="calcHRRatio()"></div>
+        <div id="c7-result" class="calc-result"></div>
+      </div>
+    </div>
+
+    <div class="calc-section">
+      <div class="calc-section-head"><h3>Training ROI</h3></div>
+      <div class="calc-section-body">
+        <div class="calc-row"><label>Measurable benefit of training ($)</label><input type="number" id="c8-ben" value="50000" oninput="calcTrainROI()"></div>
+        <div class="calc-row"><label>Total training cost ($)</label><input type="number" id="c8-cost" value="20000" oninput="calcTrainROI()"></div>
+        <div id="c8-result" class="calc-result"></div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ── Footer ───────────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div class="footer-brand">
+        <strong>poprouser</strong> HR Finance Reference &mdash; v2.0
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-meta">For internal use + client education</div>
+    </div>
+    <div class="footer-right">Created by <strong>Mohales Deis</strong></div>
+  </div>
+</footer>
+
+<script>
+const data = {
+  workforce: [
+    { name:"Total compensation (TC)", short:"Everything an employee earns, not just base pay.", def:"Total compensation is the full value of what an employee receives in exchange for their work. It includes base salary, short-term incentives (bonuses, commissions), long-term incentives (equity, deferred comp), and benefits. Understanding TC is essential for fair offers and accurate budgeting.", formula:"TC = Base Salary + Bonuses + Equity Value + Benefits + Perks",
+      components:[
+        {name:"Base salary", def:"The fixed annual or hourly wage guaranteed in the employment agreement, before any extras.", obtain:"Pull from your HRIS (e.g., ADP, Rippling, Workday) or the signed offer letter."},
+        {name:"Bonuses", def:"Variable cash payments tied to individual or company performance. Examples include annual performance bonuses and sales commissions.", obtain:"Find in compensation plan documents, payroll records, or a bonus structure spreadsheet maintained by Finance or HR."},
+        {name:"Equity value", def:"The estimated current value of stock options, RSUs (restricted stock units), or other ownership stakes granted to the employee.", obtain:"Obtain from cap table software (Carta, Pulley) or the equity grant schedule. Estimate vested value using current share price or the most recent 409A valuation."},
+        {name:"Benefits", def:"Employer-provided coverage with monetary value: health insurance, dental, vision, 401(k) match, life insurance, disability insurance, etc.", obtain:"Pull from your benefits administration platform (Gusto, Benefitfocus, etc.) or request a benefits cost report from your broker or PEO (professional employer organization)."},
+        {name:"Perks", def:"Non-traditional extras like remote work stipends, gym memberships, tuition reimbursement, or commuter benefits.", obtain:"Compiled from perk policy documents or employee expense reports. Often tracked in a perks register or total rewards statement."}
+      ], uses:["Offer letter construction","Market benchmarking","Internal equity analysis"]},
+    { name:"Benefits burden rate (BBR)", short:"How much more does an employee cost beyond their salary?", def:"The BBR expresses the cost of employer-paid benefits as a percentage of base salary. It's the multiplier that converts salary budgets into true labor cost budgets. A typical BBR in the U.S. runs 25% to 40% of base pay.", formula:"BBR = (Total Benefits Cost / Total Base Salary) x 100",
+      components:[
+        {name:"Total benefits cost", def:"The sum of all employer-paid benefit expenses across the workforce: health premiums, retirement contributions, disability, life insurance, and any other employer-funded programs.", obtain:"Pull from your benefits administration platform, payroll provider, or request a cost report from your insurance broker or PEO."},
+        {name:"Total base salary", def:"The combined annual base wages for all employees in scope, before bonuses, equity, or benefits. This is the denominator that anchors the ratio.", obtain:"Export from your HRIS or payroll system. Filter by active employees and the relevant time period."}
+      ], uses:["Headcount budget modeling","Offer letter total cost projection","CFO workforce cost reporting"]},
+    { name:"Compa-ratio", short:"Is an employee paid above or below market midpoint?", def:"Compa-ratio compares an individual's salary to the midpoint of their pay range or external market rate. A ratio below 1.0 means the employee is paid below market; above 1.0 means above. It's a one-number snapshot of pay positioning.", formula:"Compa-ratio = Actual Salary / Range Midpoint",
+      components:[
+        {name:"Actual salary", def:"What the employee is currently being paid as their base wage, excluding bonuses and benefits.", obtain:"Pull directly from your HRIS or payroll system under the employee's compensation record."},
+        {name:"Range midpoint", def:"The middle point of the approved salary band for the employee's role and level. It represents the market rate the organization has anchored to for that position.", obtain:"Pull from your compensation structure documentation. If none exists, use the 50th percentile from a market survey (Radford, SHRM, or Payscale) for the comparable role."}
+      ], uses:["Pay equity audits","Merit increase targeting","Promotion readiness signals"]},
+    { name:"Labor cost as % of revenue", short:"What share of revenue goes to paying people?", def:"This metric expresses total workforce spend as a percentage of top-line revenue. It's one of the most-used ratios in CFO/CHRO alignment conversations. Industry norms vary widely: retail ~25%, professional services 40-60%, SaaS can exceed 60% at growth stage.", formula:"Labor Cost % = (Total Labor Cost / Revenue) x 100",
+      components:[
+        {name:"Total labor cost", def:"The full cost of workforce: base salaries + employer taxes + benefits + bonuses + any contractor labor you want to include.", obtain:"Combine payroll totals from your payroll provider with benefits costs from your broker or PEO. Add contractor spend from AP (accounts payable) if including contingent labor."},
+        {name:"Revenue", def:"Total income from business operations before any expenses are deducted. Also called top-line revenue or gross revenue.", obtain:"Pull from your income statement or financial reporting system (QuickBooks, NetSuite, etc.). Use the same time period as your labor cost figure."}
+      ], uses:["Executive P&L reviews","Industry benchmarking","Workforce scaling decisions"]},
+    { name:"Payroll taxes + employer contributions", short:"The mandatory cost layer on top of every paycheck.", def:"Beyond salary, employers pay FICA taxes at 7.65%, FUTA, SUTA, and workers' compensation premiums. These are frequently overlooked in budget estimates and can add 8% to 12% on top of base wages.", formula:"Employer tax cost ≈ Salary x 8-12% (varies by state + income level)",
+      components:[
+        {name:"FICA (Federal Insurance Contributions Act)", def:"A federal payroll tax split between employee and employer. The employer pays 6.2% for Social Security and 1.45% for Medicare, totaling 7.65%.", obtain:"Calculated automatically by your payroll provider. Confirm the current Social Security wage base at IRS.gov each January."},
+        {name:"FUTA (Federal Unemployment Tax Act)", def:"A federal tax paid entirely by the employer to fund unemployment insurance. Rate is 6% on the first $7,000 of wages per employee, but typically reduced to 0.6% when state taxes are paid on time.", obtain:"Reported via IRS Form 940. Your payroll provider calculates and remits this automatically."},
+        {name:"SUTA (State Unemployment Tax Act)", def:"A state-level unemployment tax also paid by the employer. Rates vary by state and by the employer's claims history, which is called an experience rating.", obtain:"Check your state's department of labor website or your payroll provider's tax summary. Your experience rate is assigned annually by the state."},
+        {name:"Workers' compensation premiums", def:"Insurance premiums employers pay to cover employee medical costs and lost wages from on-the-job injuries. Rates vary by industry, job classification, and claims history.", obtain:"Obtain from your workers' comp insurance carrier or broker. Rates are quoted per $100 of payroll by job class code."}
+      ], uses:["True cost-per-hire modeling","Contractor vs. employee cost comparison","Payroll budget reconciliation"]},
+    { name:"Pay range / salary band", short:"The floor, midpoint, and ceiling for a given role.", def:"A salary band defines the minimum, midpoint, and maximum pay for a job level or title. The range spread between min and max typically runs 50% to 80% for professional roles. Bands anchor comp decisions to market data rather than ad hoc negotiation.", formula:"Range spread = (Max - Min) / Min x 100",
+      components:[
+        {name:"Minimum (range floor)", def:"The lowest salary the organization will pay for a given role, typically set at ~80% of the midpoint. Employees below the minimum are 'below range' and prioritized for adjustment.", obtain:"Defined during compensation structure design. Pull from your comp band documentation or salary structure spreadsheet."},
+        {name:"Midpoint (range mid)", def:"The target market rate for a fully competent employee in the role, typically set to match the 50th percentile of market data.", obtain:"Set using market survey data (Radford, Mercer, SHRM, or Payscale). Update annually during compensation review cycles."},
+        {name:"Maximum (range ceiling)", def:"The highest salary the organization will pay within that band before requiring a promotion. Employees above the max are 'red-circled' and typically ineligible for merit increases.", obtain:"Usually set at 120% to 130% of the midpoint. Document in your compensation policy."}
+      ], uses:["Offer construction","Internal equity reviews","Promotion + reclassification decisions"]},
+    { name:"Pay equity gap", short:"Unexplained pay differences between demographic groups.", def:"Pay equity analysis compares compensation across demographic groups after controlling for legitimate factors like tenure, job level, performance, and geography. The adjusted gap is what remains after those controls and is the legally and reputationally significant number.", formula:"Adjusted gap = Actual pay of group A / Actual pay of group B (controlling for role, level, tenure + performance)",
+      components:[
+        {name:"Unadjusted (raw) pay gap", def:"The simple difference in average pay between two groups with no controls applied. This is the number that often appears in press coverage, but it's heavily influenced by who holds which roles.", obtain:"Calculate from HRIS salary data grouped by the demographic dimension being analyzed. Average salary by group, then compare."},
+        {name:"Adjusted (controlled) pay gap", def:"The pay difference that remains after statistically controlling for role, level, tenure, location, and performance. This isolates whether employees doing the same work are paid differently due to a protected characteristic.", obtain:"Requires regression analysis using HRIS data. Tools like Syndio or Trusaic can produce this. Some HRIS platforms include basic pay equity modules."},
+        {name:"Control variables", def:"The legitimate factors held constant during equity analysis: job title, job level, department, geography, years of experience, and most recent performance rating.", obtain:"Pull all of these fields from your HRIS. Ensure data quality before running analysis; missing or inconsistent job codes will distort results."}
+      ], uses:["Pay equity audits","OFCCP + EEOC compliance","Proactive equity remediation planning"]}
+  ],
+  turnover: [
+    { name:"Voluntary attrition rate", short:"What percentage of employees chose to leave?", def:"Voluntary attrition measures employees who resign, retire, or otherwise choose to leave, excluding layoffs and terminations. This is the primary signal of workforce health because it reflects employees' own decisions about staying.", formula:"Voluntary attrition = (Voluntary separations / Average headcount) x 100",
+      components:[
+        {name:"Voluntary separations", def:"Employees who resigned, retired, or mutually separated (when initiated by the employee) during the measurement period.", obtain:"Pull from your HRIS using termination reason codes. Filter for voluntary reasons: resignation, retirement, personal reasons, better opportunity."},
+        {name:"Average headcount", def:"The average number of employees on payroll during the period, calculated as (headcount at start + headcount at end) / 2.", obtain:"Pull headcount snapshots from your HRIS at the start and end of the period, then average them."}
+      ], uses:["Quarterly people reviews","Flight risk modeling","Retention program ROI"]},
+    { name:"Involuntary attrition rate", short:"Terminations and layoffs as a share of headcount.", def:"Involuntary attrition captures terminations for cause and workforce reductions. High involuntary attrition can signal hiring quality issues, management problems, or performance management gaps.", formula:"Involuntary attrition = (Involuntary separations / Average headcount) x 100",
+      components:[
+        {name:"Involuntary separations", def:"Terminations initiated by the employer, including performance-based terminations, layoffs, and position eliminations.", obtain:"Pull from your HRIS using termination reason codes. Filter for involuntary reasons: termination for cause, layoff, position elimination."},
+        {name:"Average headcount", def:"The average number of active employees during the measurement period.", obtain:"Same calculation: (start headcount + end headcount) / 2, pulled from your HRIS."}
+      ], uses:["Performance management analysis","Reduction in force planning","Hiring quality benchmarking"]},
+    { name:"Cost of turnover", short:"The total financial hit when an employee walks out.", def:"Turnover cost includes direct costs (separation pay, recruiting fees, onboarding) and indirect costs (lost productivity, institutional knowledge loss, team disruption). Total cost is commonly estimated at 50% to 200% of the departing employee's annual salary depending on role complexity.", formula:"Turnover cost ≈ Salary x 0.5 to 2.0 (rule of thumb; build a detailed model for precision)",
+      components:[
+        {name:"Separation costs", def:"Direct costs at the moment of departure: severance pay, accrued PTO payout, COBRA (Consolidated Omnibus Budget Reconciliation Act) administration, and exit interview time.", obtain:"Pull severance agreements and PTO payout amounts from HR records. Calculate admin time using loaded hourly rates from Finance."},
+        {name:"Recruiting replacement costs", def:"The cost to find + hire a replacement: job postings, agency fees (typically 15-25% of first-year salary), sourcing tools, recruiter time, and interview costs.", obtain:"Sum recruiter hours x loaded rate + vendor invoices. Use your actual cost-per-hire figure for the role level as a proxy if available."},
+        {name:"Onboarding + training costs", def:"The direct cost of getting the replacement up to speed: onboarding program expenses, trainer time, equipment provisioning, and licensing fees.", obtain:"Estimate trainer time using loaded hourly rates. Add direct expenses from onboarding program budgets and IT provisioning invoices."},
+        {name:"Lost productivity cost", def:"The indirect cost of vacancy time (open seat producing nothing) plus the ramp period during which the new hire operates below full productivity.", obtain:"Estimate using: (Months vacant x Monthly revenue per employee) + (Time to full productivity x % productivity gap). This is the hardest component to measure precisely."}
+      ], uses:["Executive retention business case","Voluntary vs. involuntary cost comparison","Cost-benefit of retention programs"]},
+    { name:"Regrettable vs. non-regrettable turnover", short:"Not all exits are equal.", def:"Regrettable turnover is when a high performer or hard-to-replace employee leaves. Non-regrettable turnover is when someone underperforming or misaligned departs. Tracking this split targets retention resources correctly.", formula:"Regrettable attrition % = (Regrettable separations / Total separations) x 100",
+      components:[
+        {name:"Regrettable separation", def:"A departure the organization would have actively tried to prevent: a top performer, a difficult-to-replace specialist, or a high-potential employee.", obtain:"Tag departures in your HRIS at offboarding using a regrettable/non-regrettable field. Manager input at exit is typically required."},
+        {name:"Non-regrettable separation", def:"A departure that is neutral or even beneficial to the organization: a chronic low performer, a role being eliminated, or a poor culture fit.", obtain:"Flagged in the same offboarding workflow. Requires consistent manager input and alignment with the most recent performance rating."},
+        {name:"Total separations", def:"All departures in the measurement period, both voluntary and involuntary, which serves as the denominator for the regrettable split.", obtain:"Pull all terminations from your HRIS for the period regardless of reason code."}
+      ], uses:["Talent retention prioritization","Manager performance signals","HRBP (HR Business Partner) intervention triggers"]},
+    { name:"Retention rate", short:"The flip side of attrition: who stayed?", def:"Retention rate measures the percentage of employees who remained through a given period. It is not simply 100% minus attrition because the denominators can differ depending on how new hires during the period are handled.", formula:"Retention rate = ((End headcount - New hires during period) / Start headcount) x 100",
+      components:[
+        {name:"End headcount", def:"The total number of active employees on payroll at the close of the measurement period.", obtain:"Pull a headcount snapshot from your HRIS as of the end date of the period."},
+        {name:"New hires during period", def:"Employees who started during the measurement period and are included in end headcount. Subtracting them isolates the retention of employees who were already present at the start.", obtain:"Filter your HRIS for employees with a hire date within the measurement period."},
+        {name:"Start headcount", def:"The total number of active employees on payroll at the beginning of the measurement period.", obtain:"Pull a headcount snapshot from your HRIS as of the start date of the period."}
+      ], uses:["Cohort analysis","Team or manager benchmarking","Retention intervention targeting"]},
+    { name:"First-year attrition (new hire turnover)", short:"Are new hires leaving before they've fully ramped?", def:"First-year attrition isolates separations within 12 months of hire date. It is a leading indicator of hiring quality, onboarding effectiveness, and role-fit accuracy. Industry average hovers around 20% but spikes in high-volume, entry-level roles.", formula:"First-year attrition = (Separations within 12 months of hire / Total hires in cohort) x 100",
+      components:[
+        {name:"Separations within 12 months of hire", def:"Departures, whether voluntary or involuntary, that occur before the employee's one-year anniversary.", obtain:"Filter your HRIS terminations by tenure at separation: flag anyone whose termination date was less than 365 days after their hire date."},
+        {name:"Total hires in cohort", def:"The total number of employees hired during the same period being analyzed. A cohort could be a quarter, half-year, or full calendar year.", obtain:"Pull hire records from your HRIS filtered by start date within the cohort window."}
+      ], uses:["Onboarding program evaluation","Hiring manager scorecard","Employer brand health check"]},
+    { name:"Time to full productivity (TTP)", short:"How long before a new hire is fully contributing?", def:"TTP measures elapsed time from hire date to when an employee performs at full expected output. Often estimated at 3 to 9 months for professional roles and up to 18 months for senior or highly technical positions. TTP directly inflates the cost of turnover.", formula:"TTP cost = (Months to productivity / 12) x Annual salary x Productivity gap % during ramp",
+      components:[
+        {name:"Months to full productivity", def:"The average number of months it takes a new hire in a given role to reach 100% of expected output. This varies by role complexity and onboarding program quality.", obtain:"Gather through manager surveys at 30/60/90/180-day check-ins. Build a benchmark by role family over time."},
+        {name:"Annual salary", def:"The base salary of the new hire. Used to calculate the dollar cost of the productivity gap during the ramp period.", obtain:"Pull from the offer letter or HRIS compensation record."},
+        {name:"Productivity gap during ramp", def:"The estimated percentage of full output the employee is NOT yet delivering. A new hire at 50% productivity has a 50% gap.", obtain:"Estimate based on role: entry-level roles typically reach 75% within 3 months; complex roles may stay at 50% for 6+ months. Refine using manager assessments."}
+      ], uses:["Turnover cost modeling","Onboarding ROI analysis","Manager effectiveness benchmarking"]}
+  ],
+  acquisition: [
+    { name:"Cost-per-hire (CPH)", short:"What does it actually cost to fill one seat?", def:"CPH is the total of all recruiting costs divided by the number of hires in a period. Internal costs include recruiter salaries, HR tech, and referral bonuses. External costs include agency fees, job board ads, and background check vendors. SHRM's national benchmark average is roughly $4,700 but varies sharply by role level.", formula:"CPH = (Internal recruiting costs + External recruiting costs) / Total hires",
+      components:[
+        {name:"Internal recruiting costs", def:"The in-house cost of the recruiting function: recruiter salaries and benefits, HR team time, ATS (applicant tracking system) software, employee referral bonuses, and careers page maintenance.", obtain:"Allocate recruiter salaries proportionally to time spent recruiting. Add ATS subscription costs. Pull referral bonuses paid from payroll records."},
+        {name:"External recruiting costs", def:"Money paid to outside parties: agency or staffing firm fees (typically 15-25% of first-year salary), job board subscriptions (LinkedIn, Indeed, etc.), background check vendors, and assessment tools.", obtain:"Pull vendor invoices from Accounts Payable. Categorize by vendor type. Tie agency invoices to specific hires when possible."},
+        {name:"Total hires", def:"The number of positions filled during the measurement period. Count actual starts, not accepted offers, to align cost with outcome.", obtain:"Filter your HRIS for new hire start dates within the measurement period."}
+      ], uses:["Recruiting budget justification","In-house vs. agency ROI comparison","Per-requisition forecasting"]},
+    { name:"Time-to-fill", short:"Days from opening a req to accepting an offer.", def:"Time-to-fill measures calendar days between when a requisition is approved and when an offer is accepted. A related but distinct metric, time-to-start, measures from req opening to the candidate's first day.", formula:"Time-to-fill = Offer accept date - Requisition open date (in calendar days)",
+      components:[
+        {name:"Requisition open date", def:"The date the hiring requisition was formally approved and opened for recruiting. Not the date the manager first mentioned needing someone, but the official approval date.", obtain:"Pull from your ATS or HRIS. Most systems timestamp req creation or approval. Confirm which event starts the clock per your organization's policy."},
+        {name:"Offer accept date", def:"The date a candidate formally accepted the employment offer, typically via a signed offer letter or verbal confirmation.", obtain:"Pull from your ATS offer management module. Offer accept date should be logged separately from offer extended date."}
+      ], uses:["Recruiter performance benchmarking","Bottleneck identification","Workforce planning gap analysis"]},
+    { name:"Offer acceptance rate (OAR)", short:"Of the offers extended, how many were accepted?", def:"OAR measures the quality of the late-stage candidate experience and the competitiveness of compensation packages. A rate below 80% typically signals a comp or employer brand problem.", formula:"OAR = (Offers accepted / Offers extended) x 100",
+      components:[
+        {name:"Offers accepted", def:"The count of formal employment offers where the candidate responded yes and signed or verbally confirmed acceptance within the measurement period.", obtain:"Pull from your ATS offer tracking. Offers accepted should be a distinct stage or disposition code in your pipeline."},
+        {name:"Offers extended", def:"The total count of formal employment offers sent to candidates during the same period, regardless of outcome. Includes accepted, declined, and expired offers.", obtain:"Pull from your ATS. Filter for 'offer extended' stage events within the date range. Ensure your ATS distinguishes 'extended' from 'accepted' as separate events."}
+      ], uses:["Comp competitiveness diagnostics","Recruiter effectiveness measurement","Employer brand health signal"]},
+    { name:"Quality of hire (QoH)", short:"Did we hire the right people?", def:"Quality of hire measures how well new hires perform relative to expectations, using a composite of performance ratings, ramp speed, and manager satisfaction within the first 12 to 18 months. It is the most strategically valuable recruiting metric and the hardest to operationalize consistently.", formula:"QoH score = Average of (Performance rating % + Ramp speed % + Manager satisfaction %)",
+      components:[
+        {name:"Performance rating %", def:"The new hire's first formal performance review score, converted to a percentage of the maximum possible score. For example, a 4 out of 5 rating = 80%.", obtain:"Pull from your performance management system (Lattice, Culture Amp, 15Five, Workday, etc.) after the first review cycle. Standardize scores across rating scales before averaging."},
+        {name:"Ramp speed %", def:"A measure of how quickly the new hire reached full productivity relative to the expected ramp timeline. If the target was 6 months and they hit full output in 4, ramp speed = 150%. If it took 8 months, ramp speed = 75%.", obtain:"Track via manager surveys at 30/60/90/180-day intervals asking what percentage of full productivity the employee is at. Calculate the ratio of expected vs. actual months to reach 100%."},
+        {name:"Manager satisfaction %", def:"The hiring manager's rating of the new hire's overall fit, performance, and contribution, expressed as a percentage. Often captured via a structured survey at 90 days and 12 months post-hire.", obtain:"Deploy a short pulse survey (3 to 5 questions) to the hiring manager at 90 days and 1 year post-hire. Average the scores and convert to a 0 to 100% scale."}
+      ], uses:["Recruiter + hiring manager scorecards","Source channel ROI","Predictive hiring model calibration"]},
+    { name:"Source of hire (SoH) + sourcing ROI", short:"Which channels produce the best hires for the least cost?", def:"SoH tracks where successful hires originated (referrals, LinkedIn, direct apply, agency, etc.). Sourcing ROI layers cost and quality-of-hire data on top to compare channel efficiency. Employee referrals consistently outperform other channels on both CPH and QoH benchmarks.", formula:"Sourcing ROI = (QoH score from channel / Cost per hire from channel) x 100",
+      components:[
+        {name:"QoH score from channel", def:"The average quality-of-hire score for all hires sourced from a specific channel. This tells you not just how many people came from a channel, but how good they were.", obtain:"Tag each hire's source in your ATS at the point of application. Link source tags to QoH data from your performance management system after hire."},
+        {name:"Cost per hire from channel", def:"The total spend on a sourcing channel divided by the number of hires it produced. Agency fees are high per-hire; referral bonuses are lower; organic traffic may be near zero.", obtain:"Divide channel-specific spending (from AP invoices) by hires sourced from that channel (from ATS data). Requires clean source-of-hire tracking in your ATS."}
+      ], uses:["Recruiting budget allocation","Referral program investment decisions","Agency fee renegotiation"]},
+    { name:"Pipeline conversion rate", short:"What percent of applicants make it to each stage?", def:"Pipeline conversion tracks yield at each funnel stage: applied to phone screen, screen to interview, interview to offer, offer to accept. Weak conversion at any single stage flags a specific problem rather than requiring a full overhaul.", formula:"Stage conversion = (Candidates advancing to next stage / Candidates at current stage) x 100",
+      components:[
+        {name:"Candidates advancing", def:"The count of candidates who were moved forward from one pipeline stage to the next during the measurement period.", obtain:"Pull from your ATS stage progression data. Most ATS platforms (Greenhouse, Lever, Ashby, etc.) have funnel or pipeline conversion reports built in."},
+        {name:"Candidates at current stage", def:"The total count of candidates who entered a given stage during the same measurement period, regardless of outcome.", obtain:"Same ATS funnel report. Compare across roles, departments, and time periods to find conversion patterns."}
+      ], uses:["Recruiting funnel audit","Interview process optimization","Diversity sourcing effectiveness"]}
+  ],
+  productivity: [
+    { name:"Revenue per employee (RPE)", short:"How much revenue does each FTE generate on average?", def:"RPE is the most widely used single-number proxy for workforce productivity. High-performing SaaS companies can exceed $500K RPE; services firms typically run $150K to $350K. Context and industry matter enormously, so always benchmark against peers.", formula:"RPE = Annual revenue / FTE headcount",
+      components:[
+        {name:"Annual revenue", def:"Total business income from operations over a 12-month period before any deductions. Also called top-line or gross revenue.", obtain:"Pull from the income statement or your financial reporting system (QuickBooks, NetSuite, Xero, etc.). Confirm whether you're using recognized revenue or billed revenue, as these can differ."},
+        {name:"FTE headcount", def:"Total workforce size expressed in full-time equivalents. A 20-hr/week employee at a 40-hr standard = 0.5 FTE.", obtain:"Export from your HRIS. Confirm the FTE conversion methodology applied for part-time staff. Use the same point in time as your revenue figure."}
+      ], uses:["Executive productivity benchmarking","Hiring justification (marginal RPE)","Investor workforce efficiency reporting"]},
+    { name:"HR cost ratio", short:"What portion of total operating expense is HR?", def:"The HR cost ratio expresses total HR department costs as a percentage of total operating expense or revenue. Median HR cost ratio runs around 0.7% to 1.2% of revenue for mid-sized companies. Below 0.5% can indicate underinvestment.", formula:"HR cost ratio = (Total HR costs / Total operating expense) x 100",
+      components:[
+        {name:"Total HR costs", def:"The complete cost of running the HR function: HR team salaries and benefits, HRIS + HR tech subscriptions, L&D (learning and development) budgets, recruiting costs, compliance administration, and outsourced HR services.", obtain:"Pull from Finance using the HR department cost center(s). Include all headcount-related costs plus software and vendor spend allocated to HR."},
+        {name:"Total operating expense", def:"All costs required to run the business during the period. Clarify scope with Finance before comparing to benchmarks, as some frameworks exclude COGS (cost of goods sold).", obtain:"Pull from the income statement or P&L (profit and loss statement) from your accounting system."}
+      ], uses:["HR budget justification to CFO","HR function benchmarking","Restructuring impact modeling"]},
+    { name:"HR-to-employee ratio (HER)", short:"How many employees does each HR professional support?", def:"The HER measures HR team size relative to total workforce. The traditional benchmark was 1 HR staff per 100 employees, but automation and HR tech have pushed many high-performing orgs to 1:150 or leaner.", formula:"HER = Total employees / Total HR FTEs",
+      components:[
+        {name:"Total employees", def:"All active employees in the organization, typically measured in headcount (not FTE) for this ratio, since each person is a potential service interaction regardless of hours.", obtain:"Pull active employee headcount from your HRIS. Include all employees the HR team supports."},
+        {name:"Total HR FTEs", def:"The full-time equivalent count of employees in HR roles: HR generalists, HRBPs (HR business partners), recruiters, comp/benefits specialists, L&D staff, and HR leadership.", obtain:"Pull from your HRIS filtered by HR department. Convert any part-time HR staff to FTE. Be consistent about which functions you include."}
+      ], uses:["HR staffing model design","HR outsourcing ROI analysis","Post-merger HR integration planning"]},
+    { name:"Training ROI (return on investment)", short:"Did the L&D investment pay off?", def:"Training ROI measures the financial return generated by a learning and development program. The Phillips ROI Methodology is the most widely used framework, extending Kirkpatrick's four levels to include a fifth: monetary return on investment.", formula:"Training ROI = ((Benefit of training - Cost of training) / Cost of training) x 100",
+      components:[
+        {name:"Benefit of training", def:"The measurable monetary value the organization gained as a direct result of the training: productivity improvements, error reduction, sales increase, turnover reduction, compliance savings, etc.", obtain:"Use pre/post performance metrics, manager assessments, and business outcome data. Apply an isolation factor to attribute only what the training caused."},
+        {name:"Cost of training", def:"All fully loaded costs of delivering the program: design and development costs, facilitator fees, LMS (learning management system) licenses, participant time valued at loaded hourly rate, materials, travel, and administration.", obtain:"Sum vendor invoices, internal staff time x loaded hourly rate, and direct program expenses. Don't forget to include participant time, which is often the largest hidden cost."}
+      ], uses:["L&D budget justification","Program prioritization","Vendor performance evaluation"]},
+    { name:"Absenteeism rate", short:"Lost hours as a share of scheduled work time.", def:"Absenteeism rate measures unplanned absences as a percentage of total available work time. It is a proxy for workforce engagement, well-being, and organizational health. Chronic absenteeism is a leading indicator of voluntary turnover.", formula:"Absenteeism rate = (Unplanned absence days / (Avg headcount x Total scheduled workdays)) x 100",
+      components:[
+        {name:"Unplanned absence days", def:"Days missed due to unscheduled, last-minute absences: sick calls, personal emergencies, and unexplained no-shows. This excludes approved PTO, FMLA (Family and Medical Leave Act) leave, and other pre-planned time off.", obtain:"Pull from your HRIS time and attendance module or payroll platform. Requires clear absence coding to distinguish unplanned from planned leave."},
+        {name:"Average headcount", def:"The average number of active employees during the measurement period.", obtain:"Pull from your HRIS: (start headcount + end headcount) / 2."},
+        {name:"Total scheduled workdays", def:"The number of working days in the measurement period, accounting for weekends and company holidays. For a full calendar year in the U.S., this is typically 260 days minus holidays.", obtain:"Use your official company calendar or HR policy that defines the standard work year."}
+      ], uses:["Engagement survey corroboration","FMLA cost tracking","Productivity loss quantification"]},
+    { name:"Span of control", short:"How many direct reports does each manager have?", def:"Span of control measures the number of employees reporting to a single manager. Wide spans (8+) are more efficient but require self-sufficient teams. Narrow spans (3 to 5) allow tighter coaching but increase management overhead. Optimal span varies by role complexity.", formula:"Average span of control = Total non-manager employees / Total managers",
+      components:[
+        {name:"Total non-manager employees (ICs)", def:"All employees who do not have direct reports. Also called ICs (individual contributors).", obtain:"Filter your HRIS org chart by employees with zero direct reports. Most HRIS platforms have a manager flag or supervisor field that makes this filterable."},
+        {name:"Total managers", def:"All employees who have at least one direct report, regardless of their own title. Includes front-line managers, mid-level managers, and directors.", obtain:"Filter your HRIS for employees with one or more direct reports. Generated from the reporting structure and org hierarchy data."}
+      ], uses:["Org design + restructuring","Management cost analysis","Succession planning"]}
+  ],
+  planning: [
+    { name:"Full-time equivalent (FTE)", short:"A standardized unit for measuring workforce capacity.", def:"FTE converts part-time and variable-hour workers into a common unit equivalent to one full-time employee. A part-time employee at 20 hours vs. a 40-hour standard = 0.5 FTE. It is the lingua franca of workforce planning and budgeting.", formula:"FTE = Total hours worked by all employees / Standard full-time hours per period",
+      components:[
+        {name:"Total hours worked", def:"The aggregate hours contributed by all employees in scope during the measurement period. Includes both full-time and part-time employees.", obtain:"Pull from your time and attendance system or payroll platform. For salaried employees, use their standard scheduled hours rather than tracked hours."},
+        {name:"Standard full-time hours per period", def:"The baseline hours that define one FTE. For a full year in the U.S., this is typically 2,080 hours (40 hrs/week x 52 weeks). For a quarter, it's 520 hours.", obtain:"Defined by company policy. Confirm with HR or Finance which standard is being used, especially if the organization spans multiple countries."}
+      ], uses:["Headcount budget reconciliation","Contractor vs. FTE cost modeling","Labor capacity planning"]},
+    { name:"Open requisition (open req) rate", short:"What share of budgeted positions are currently vacant?", def:"Open req rate measures the gap between approved headcount and filled headcount. A high open req rate signals recruiting bottlenecks or unrealistic hiring plans and directly correlates to productivity loss.", formula:"Open req rate = (Open reqs / Total approved headcount) x 100",
+      components:[
+        {name:"Open reqs", def:"The number of approved headcount positions that are currently unfilled and actively recruiting. This excludes positions approved but on hiring hold.", obtain:"Pull from your ATS requisition tracking or HRIS open position module. Filter for 'active' status. Distinguish between actively recruiting reqs and those on hold."},
+        {name:"Total approved headcount", def:"The total number of positions (filled and open) that have been approved in the current workforce plan or budget cycle.", obtain:"Pull from the approved headcount plan, typically owned by Finance or HR. Often maintained in a headcount planning spreadsheet or HRIS module."}
+      ], uses:["Workforce capacity risk flagging","Recruiting team workload management","Headcount budget variance explanation"]},
+    { name:"Headcount budget variance", short:"Did we spend more or less on people than planned?", def:"Headcount budget variance compares actual labor spend against the approved workforce plan. Positive variance means under-budget, often from delayed hires. Negative variance means overspend, usually from unplanned backfills or contractor use.", formula:"Budget variance = (Actual HC spend - Budgeted HC spend) / Budgeted HC spend x 100",
+      components:[
+        {name:"Actual HC spend", def:"What the organization actually paid in total labor costs during the period: salaries, wages, bonuses, and employer-paid benefits for all active employees.", obtain:"Pull from your payroll system or GL (general ledger) cost center reports. Work with Finance to capture total labor cost, not just gross wages."},
+        {name:"Budgeted HC spend", def:"The amount approved in the workforce plan for the same period. This is the financial target against which actuals are measured.", obtain:"Pull from your approved annual budget or workforce plan, typically maintained by Finance. Confirm whether the budget includes benefits burden or only base salary."}
+      ], uses:["Monthly CFO/CHRO reporting","Departmental P&L reviews","Year-end comp planning calibration"]},
+    { name:"Workforce planning ratio (WPR)", short:"HR's strategic vs. administrative activity split.", def:"The WPR compares time or resources spent on strategic workforce activities versus transactional HR work. Organizations with mature people analytics functions typically skew 60% to 70% toward strategic activity.", formula:"WPR = Strategic HR activity hours / Total HR activity hours x 100",
+      components:[
+        {name:"Strategic HR activity hours", def:"Time spent on forward-looking, business-impacting HR work: workforce forecasting, talent strategy, succession planning, org design, people analytics, and culture initiatives.", obtain:"Typically estimated through HR team time-tracking or activity logs. Some orgs run periodic time-study surveys of their HR teams to establish this baseline."},
+        {name:"Total HR activity hours", def:"All hours worked by the HR function: both strategic activities and transactional ones (processing transactions, employee questions, compliance paperwork, data entry, etc.).", obtain:"Same time-tracking or time-study approach. The ratio between strategic and total hours defines the maturity signal."}
+      ], uses:["HR function maturity assessment","HR tech investment justification","Outsourcing scope definition"]},
+    { name:"Succession coverage ratio", short:"How many critical roles have a ready-now successor?", def:"Succession coverage ratio measures the percentage of key or mission-critical positions that have at least one identified and development-ready successor. A ratio below 60% represents meaningful organizational risk.", formula:"Coverage ratio = (Critical roles with identified successors / Total critical roles) x 100",
+      components:[
+        {name:"Critical roles with identified successors", def:"Positions on the critical role list where at least one 'ready now' or 'ready in 1 to 2 years' successor has been named and documented in the succession plan.", obtain:"Pull from your succession planning tool or 9-box talent review documentation. Count roles where a successor name is populated and marked as ready or near-ready."},
+        {name:"Total critical roles", def:"The complete list of positions designated as mission-critical: roles where a vacancy would materially impact operations, revenue, or client relationships.", obtain:"Maintained by HR in partnership with the executive team. Typically documented in a critical role registry, updated during annual talent reviews."}
+      ], uses:["Board + executive talent risk reporting","Succession planning program tracking","M&A due diligence"]},
+    { name:"Internal mobility rate", short:"What share of open roles are filled from within?", def:"Internal mobility rate tracks how often open positions are filled by current employees through promotions, lateral moves, or internal transfers. High internal mobility signals strong career pathing and reduces CPH.", formula:"Internal mobility rate = (Internal fills / Total position fills) x 100",
+      components:[
+        {name:"Internal fills", def:"Positions filled by a current employee through a promotion, lateral transfer, or internal job posting rather than an external hire.", obtain:"Pull from your HRIS using hire source codes. Tag promotions and internal transfers separately from external hires at the time of the position change."},
+        {name:"Total position fills", def:"All positions filled during the measurement period, whether by internal or external candidates.", obtain:"Pull all hire and internal transfer events from your HRIS for the period. Sum of internal fills + external hires equals total position fills."}
+      ], uses:["Career development program ROI","Retention strategy validation","CPH reduction tracking"]}
+  ]
+};
+
+function renderGrid(domain) {
+  const grid = document.getElementById(domain + '-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  data[domain].forEach((term, i) => {
+    const card = document.createElement('div');
+    card.className = 'term-card';
+    card.id = domain + '-card-' + i;
+    card.innerHTML = '<div class="term-name">' + term.name + '</div><div class="term-short">' + term.short + '</div>';
+    card.onclick = () => showDetail(domain, i);
+    grid.appendChild(card);
+  });
+}
+
+function showDetail(domain, i) {
+  const term = data[domain][i];
+  const detail = document.getElementById(domain + '-detail');
+  document.querySelectorAll('#' + domain + '-grid .term-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById(domain + '-card-' + i).classList.add('selected');
+  let componentsHTML = '';
+  if (term.components && term.components.length) {
+    const cards = term.components.map(c =>
+      '<div class="component-card">' +
+        '<div class="component-name">' + c.name + '</div>' +
+        '<div class="component-def">' + c.def + '</div>' +
+        '<div class="component-obtain"><span class="obtain-label">How to obtain</span> ' + c.obtain + '</div>' +
+      '</div>'
+    ).join('');
+    componentsHTML = '<div class="components-section"><div class="components-label">Formula component breakdown</div><div class="component-grid">' + cards + '</div></div>';
+  }
+  const tags = term.uses.map(u => '<span class="use-case-tag">' + u + '</span>').join('');
+  detail.innerHTML = '<h3>' + term.name + '</h3><div class="detail-body"><p style="margin-bottom:10px;">' + term.def + '</p><div class="formula-box">' + term.formula + '</div>' + componentsHTML + '<div style="margin-top:14px;"><span style="font-size:10px;font-family:var(--font-head);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--pop-blue);margin-right:6px;">Use cases</span>' + tags + '</div></div>';
+  detail.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function goTab(tab) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  const el = document.getElementById(tab);
+  if (el) el.classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b => { if (b.dataset.tab === tab) b.classList.add('active'); });
+}
+document.querySelectorAll('.tab-btn').forEach(b => { b.onclick = () => goTab(b.dataset.tab); });
+['workforce','turnover','acquisition','productivity','planning'].forEach(d => renderGrid(d));
+
+function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+function calcTurnover(){const s=parseFloat(document.getElementById('c1-salary').value)||0,m=parseFloat(document.getElementById('c1-mult').value)||0;document.getElementById('c1-result').innerHTML='Estimated turnover cost: <span>'+fmt(s*m/100)+'</span>';}
+function calcCPH(){const i=parseFloat(document.getElementById('c2-int').value)||0,e=parseFloat(document.getElementById('c2-ext').value)||0,h=parseFloat(document.getElementById('c2-hires').value)||1;document.getElementById('c2-result').innerHTML='Cost-per-hire: <span>'+fmt((i+e)/h)+'</span>';}
+function calcBBR(){const b=parseFloat(document.getElementById('c3-base').value)||1,ben=parseFloat(document.getElementById('c3-ben').value)||0;document.getElementById('c3-result').innerHTML='Benefits burden rate: <span>'+((ben/b)*100).toFixed(1)+'%</span>';}
+function calcCompa(){const a=parseFloat(document.getElementById('c4-actual').value)||0,m=parseFloat(document.getElementById('c4-mid').value)||1,r=(a/m).toFixed(2),label=r<0.9?' — below market':r>1.1?' — above market':' — at market';document.getElementById('c4-result').innerHTML='Compa-ratio: <span>'+r+'</span>'+label;}
+function calcAttrition(){const s=parseFloat(document.getElementById('c5-sep').value)||0,h=parseFloat(document.getElementById('c5-hc').value)||1;document.getElementById('c5-result').innerHTML='Voluntary attrition rate: <span>'+((s/h)*100).toFixed(1)+'%</span>';}
+function calcRPE(){const r=parseFloat(document.getElementById('c6-rev').value)||0,f=parseFloat(document.getElementById('c6-fte').value)||1;document.getElementById('c6-result').innerHTML='Revenue per employee: <span>'+fmt(r/f)+'</span>';}
+function calcHRRatio(){const h=parseFloat(document.getElementById('c7-hr').value)||0,o=parseFloat(document.getElementById('c7-opex').value)||1;document.getElementById('c7-result').innerHTML='HR cost ratio: <span>'+((h/o)*100).toFixed(2)+'%</span> of operating expense';}
+function calcTrainROI(){const b=parseFloat(document.getElementById('c8-ben').value)||0,c=parseFloat(document.getElementById('c8-cost').value)||1;document.getElementById('c8-result').innerHTML='Training ROI: <span>'+(((b-c)/c)*100).toFixed(0)+'%</span>';}
+calcTurnover();calcCPH();calcBBR();calcCompa();calcAttrition();calcRPE();calcHRRatio();calcTrainROI();
+</script>
+</body>
+</html>
